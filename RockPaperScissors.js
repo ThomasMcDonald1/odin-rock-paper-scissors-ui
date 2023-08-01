@@ -1,3 +1,6 @@
+// event listener for when the DOM is created, runs the game() after
+document.addEventListener("DOMContentLoaded", game());
+
 function game()
 {
     const message = "Please input a choice of either 'rock', 'paper', or 'scissors': ";
@@ -5,9 +8,9 @@ function game()
     let playerNumWins = 0; // Track player score
     let computerNumWins = 0; // Track computer score
 
-    window.alert("Welcome to Rock Paper Scissors! We will begin a 5-round game:");
+    //window.alert("Welcome to Rock Paper Scissors! We will begin a 5-round game:");
 
-    for (; roundNumber <= 5; roundNumber++)
+    /*for (; roundNumber <= 5; roundNumber++)
     {
         let computerChoice = getComputerChoice();
         let playerChoice = getPlayerChoice(message);
@@ -37,6 +40,7 @@ function game()
     if (playerNumWins > computerNumWins) { console.log("Player won the game!"); }
     else if (playerNumWins < computerNumWins) { console.log("Computer won the game!"); }
     else { console.log("The game was a tie."); }
+    */
 }
 
 function playRockPaperScissorsRound(roundNumber, playerChoice, computerChoice)

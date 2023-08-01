@@ -1,0 +1,61 @@
+.choices
+{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.score-container
+{
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    background-color: rgb(77, 59, 155);
+    min-width: 500px;
+}
+
+.score
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.rps-visuals
+{
+    display: flex;
+    min-height: 400px;
+    max-width: 800px;
+    background-color: blanchedalmond;
+}
+
+body
+{
+    background-color: rgb(16, 16, 85);;
+}
+
+.main-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(32, 32, 71);
+    border-top: 4px solid;
+    border-bottom: 4px solid;
+    border-left: 4px solid;
+    border-right: 4px solid;
+    border-color: rgb(0, 0, 0);
+}
+
+.img-display
+{
+    width: 160px;
+    height: 130px;
+}
+
+.choice-container
+{
+    display: flex;
+    flex-direction: column;
+}
