@@ -1,46 +1,23 @@
 // event listener for when the DOM is created, runs the game() after
-document.addEventListener("DOMContentLoaded", game());
+document.addEventListener("DOMContentLoaded", initializeGame());
 
-function game()
+function initializeGame()
 {
-    const message = "Please input a choice of either 'rock', 'paper', or 'scissors': ";
-    let roundNumber = 1; // 5-round game
-    let playerNumWins = 0; // Track player score
-    let computerNumWins = 0; // Track computer score
+    let playerScore = 0;
+    let cpuScore = 0;   
+    const headerText = document.querySelector('#game-info-header');
+    const infoText = document.querySelector('#game-info-update');
+    const playerScoreDisplay = document.querySelector('#player-score');
+    const cpuScoreDisplay = document.querySelector('#cpu-score');
+    playerScoreDisplay.textContent = playerScore;
+    cpuScoreDisplay.textContent = cpuScore;
+    displayWelcome(headerText, infoText);
+}
 
-    //window.alert("Welcome to Rock Paper Scissors! We will begin a 5-round game:");
-
-    /*for (; roundNumber <= 5; roundNumber++)
-    {
-        let computerChoice = getComputerChoice();
-        let playerChoice = getPlayerChoice(message);
-        //console.log(playRockPaperScissorsRound(roundNumber, playerChoice, computerChoice));
-        switch (playRockPaperScissorsRound(roundNumber, playerChoice, computerChoice))
-        {
-            case 'Player':
-                console.log(playerChoice + " beats " + computerChoice + "! Player wins.");
-                playerNumWins++;
-                break;
-            case 'Computer':
-                console.log(computerChoice + " beats " + playerChoice + "! Computer wins.");
-                computerNumWins++;
-                break;
-            case 'Tie':
-                console.log("Both choices are the same between the player and computer. Tie!");
-                break;
-            case 'Invalid':
-                console.log("Player input an invalid value. Must be 'rock', 'paper', or 'scissors'! (not case-sensitive)\n");
-                console.log("Computer wins by default.");
-                computerNumWins++;
-                break;
-        }
-        console.log("\n");
-    }
-    console.log("Player has " + playerNumWins + " wins, and the computer has " + computerNumWins + " wins.");
-    if (playerNumWins > computerNumWins) { console.log("Player won the game!"); }
-    else if (playerNumWins < computerNumWins) { console.log("Computer won the game!"); }
-    else { console.log("The game was a tie."); }
-    */
+function displayWelcome(headerText, infoText)
+{
+    headerText.textContent = "Welcome to Rock Paper Scissors (Player vs CPU). \nFirst to 5 wins the game!";
+    infoText.textContent = "Remember: Rock beats Scissors, Scissors beats Paper, and Paper beats Rock.\n\nPlease make your weapon of choice.";
 }
 
 function playRockPaperScissorsRound(roundNumber, playerChoice, computerChoice)
@@ -119,3 +96,47 @@ function getRPSValue(index)
             break;
     }
 }
+
+/*
+function old_game()
+{
+    const welcomeMessage = "Welcome to an epic rock paper scissors battle! Please select your weapon of choice.";
+    let roundNumber = 1; // 5-round game
+    let playerNumWins = 0; // Track player score
+    let computerNumWins = 0; // Track computer score
+
+    //window.alert("Welcome to Rock Paper Scissors! We will begin a 5-round game:");
+
+    for (; roundNumber <= 5; roundNumber++)
+    {
+        let computerChoice = getComputerChoice();
+        let playerChoice = getPlayerChoice(message);
+        //console.log(playRockPaperScissorsRound(roundNumber, playerChoice, computerChoice));
+        switch (playRockPaperScissorsRound(roundNumber, playerChoice, computerChoice))
+        {
+            case 'Player':
+                console.log(playerChoice + " beats " + computerChoice + "! Player wins.");
+                playerNumWins++;
+                break;
+            case 'Computer':
+                console.log(computerChoice + " beats " + playerChoice + "! Computer wins.");
+                computerNumWins++;
+                break;
+            case 'Tie':
+                console.log("Both choices are the same between the player and computer. Tie!");
+                break;
+            case 'Invalid':
+                console.log("Player input an invalid value. Must be 'rock', 'paper', or 'scissors'! (not case-sensitive)\n");
+                console.log("Computer wins by default.");
+                computerNumWins++;
+                break;
+        }
+        console.log("\n");
+    }
+    console.log("Player has " + playerNumWins + " wins, and the computer has " + computerNumWins + " wins.");
+    if (playerNumWins > computerNumWins) { console.log("Player won the game!"); }
+    else if (playerNumWins < computerNumWins) { console.log("Computer won the game!"); }
+    else { console.log("The game was a tie."); }
+    
+}
+*/
