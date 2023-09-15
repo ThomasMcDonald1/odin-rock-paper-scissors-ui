@@ -56,7 +56,7 @@
     border-color: rgb(0, 0, 0);
 }
 
-#game-info-header
+#game-info-header, #game-info-update, #footer-rules
 {
     flex-grow: 0;
     padding: 25px;
@@ -64,13 +64,7 @@
     text-align: center;
 }
 
-#game-info-update
-{
-    flex-grow: 0;
-    padding: 25px;
-    white-space: pre-line;
-    text-align: center;
-}
+
 
 body
 {

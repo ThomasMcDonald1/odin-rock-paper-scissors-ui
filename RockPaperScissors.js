@@ -1,6 +1,13 @@
 // event listener for when the DOM is created, runs the game() after
 document.addEventListener("DOMContentLoaded", initializeGame());
 
+const choiceButtons = document.querySelectorAll('button');
+choiceButtons.forEach((button) => 
+{
+    button.addEventListener("click", function ()
+    { playRound(button.id) });
+});
+
 function initializeGame()
 {
     let playerScore = 0;
@@ -17,56 +24,65 @@ function initializeGame()
 function displayWelcome(headerText, infoText)
 {
     headerText.textContent = "Welcome to Rock Paper Scissors (Player vs CPU). \nFirst to 5 wins the game!";
-    infoText.textContent = "Remember: Rock beats Scissors, Scissors beats Paper, and Paper beats Rock.\n\nPlease make your weapon of choice.";
+    infoText.textContent = "Please make your weapon of choice.";
 }
 
-function playRockPaperScissorsRound(roundNumber, playerChoice, computerChoice)
+function playRound(choiceID)
 {
-    console.log("******** Round " + roundNumber + " ********\n");
-    console.log("Player chose: " + playerChoice + "\n");
-    console.log("Computer chose: " + computerChoice + "\n");
-    return (evaluateChoices(playerChoice, computerChoice));
+    const cpuRef = document.querySelector('#cpu-score');
+    const playerRef = document.querySelector('#player-score');
+    let cpuScore = parseInt(cpuRef.textContent);
+    let playerScore = parseInt(playerRef.textContent);
+
+    //console.log("cpu score: "+cpuScore+", player score: "+playerScore);
+    let computerChoice = getComputerChoice();
+    //console.log(computerChoice);
+    displayRoundResults(choiceID, computerChoice, evaluateChoices(choiceID, computerChoice));
+    //console.log("Player: "+choiceID+", Computer: "+computerChoice+", winner: "+roundWinner);
 }
+
+function displayRoundResults(playerChoice, cpuChoice, roundWinner)
+{
+    const headerText = document.querySelector('#game-info-header');
+    const infoText = document.querySelector('#game-info-update');
+    const playerScoreDisplay = document.querySelector('#player-score');
+    const cpuScoreDisplay = document.querySelector('#cpu-score');
+
+    headerText.textContent = "You chose: "+playerChoice+".\nComputer chose: "+cpuChoice+"\n";
+    switch (roundWinner)
+    {
+        case "Player":
+            infoText.textContent = roundWinner + " wins!";
+            break;
+        case "Computer":
+            infoText.textContent = roundWinner + " wins!";
+            break;
+        case "Tie":
+            infoText.textContent = "This round is a tie!";
+            break;
+    }
+}
+
+
 
 function evaluateChoices(playerChoice, computerChoice)
 {
     switch (playerChoice)
     {
-        case 'Rock':
-            if (computerChoice === 'Rock') { return 'Tie'; }
-            else if (computerChoice === 'Paper') return 'Computer';
+        case 'rock':
+            if (computerChoice === 'rock') { return 'Tie'; }
+            else if (computerChoice === 'paper') return 'Computer';
             return 'Player';
-        case 'Paper':
-            if (computerChoice === 'Paper') { return 'Tie'; }
-            else if (computerChoice === 'Scissors') return 'Computer';
+        case 'paper':
+            if (computerChoice === 'paper') { return 'Tie'; }
+            else if (computerChoice === 'scissors') return 'Computer';
             return 'Player';
-        case 'Scissors':
-            if (computerChoice === 'Scissors') { return 'Tie'; }
-            else if (computerChoice === 'Rock') return 'Computer';
+        case 'scissors':
+            if (computerChoice === 'scissors') { return 'Tie'; }
+            else if (computerChoice === 'rock') return 'Computer';
             return 'Player';
         default:
             return 'Invalid';
-    }
-}
-
-function getPlayerChoice(message)
-{
-    let playerChoice = prompt(message).toLowerCase();
-    //console.log(playerChoice);
-    switch (playerChoice)
-    {
-        case 'rock':
-            return 'Rock';
-            break;
-        case 'paper':
-            return 'Paper';
-            break;
-        case 'scissors':
-            return 'Scissors';
-            break;
-        default:
-            return 'Error';
-            break;
     }
 }
 
@@ -83,13 +99,13 @@ function getRPSValue(index)
     switch (index)
     {
         case 0:
-            return 'Rock';
+            return 'rock';
             break;
         case 1:
-            return 'Paper';
+            return 'paper';
             break;
         case 2:
-            return 'Scissors';
+            return 'scissors';
             break;
         default:
             return 'Error';
