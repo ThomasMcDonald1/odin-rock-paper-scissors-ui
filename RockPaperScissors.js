@@ -48,18 +48,45 @@ function displayRoundResults(playerChoice, cpuChoice, roundWinner)
     const playerScoreDisplay = document.querySelector('#player-score');
     const cpuScoreDisplay = document.querySelector('#cpu-score');
 
-    headerText.textContent = "You chose: "+playerChoice+".\nComputer chose: "+cpuChoice+"\n";
-    switch (roundWinner)
+    if (parseInt(playerScoreDisplay.textContent) < 5 && parseInt(cpuScoreDisplay.textContent) < 5)
     {
-        case "Player":
-            infoText.textContent = roundWinner + " wins!";
-            break;
-        case "Computer":
-            infoText.textContent = roundWinner + " wins!";
-            break;
-        case "Tie":
-            infoText.textContent = "This round is a tie!";
-            break;
+        headerText.textContent = "You chose: "+playerChoice+".\nComputer chose: "+cpuChoice+"\n";
+        switch (roundWinner)
+        {
+            case "Player":
+                let playerScore = parseInt(playerScoreDisplay.textContent);
+                playerScore++;
+                if (parseInt(playerScoreDisplay.textContent) < 4)
+                {
+                    infoText.textContent = roundWinner + " won this round!";
+                    playerScoreDisplay.textContent = playerScore;
+                }
+                else if (parseInt(playerScoreDisplay.textContent) === 4)
+                {
+                    headerText.textContent = "Player has won the game! Too bad for the computer.";
+                    playerScoreDisplay.textContent = playerScore;
+                    infoText.textContent = "Refresh the page if you would like to play again!";
+                }
+                break;
+            case "Computer":
+                let cpuScore = parseInt(cpuScoreDisplay.textContent);
+                cpuScore++;
+                if (parseInt(cpuScoreDisplay.textContent) < 4)
+                {
+                    infoText.textContent = roundWinner + " won this round!";
+                    cpuScoreDisplay.textContent = cpuScore;
+                }
+                else if (parseInt(playerScoreDisplay.textContent) === 4)
+                {
+                    headerText.textContent = "Computer has won the game! Too bad for you.";
+                    cpuScoreDisplay.textContent = cpuScore;
+                    infoText.textContent = "Refresh the page if you would like to play again!";
+                }
+                break;
+            case "Tie":
+                infoText.textContent = "This round is a tie!";
+                break;
+        }
     }
 }
 
